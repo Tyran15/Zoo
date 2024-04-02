@@ -4,6 +4,7 @@ import { Text, ImageBackground, Image, TextInput, TouchableOpacity, View } from 
 import { useNavigation } from "@react-navigation/native";
 import { styles } from "../src/style";
 import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Cadastro() {
   const navigation = useNavigation();
@@ -26,9 +27,10 @@ export default function Cadastro() {
 
   const submitChange = async () => {
     try {
-      const response = await axios.post("http://localhost/bdetec/userInsert",formData, axiosConfig);
+      const response = await axios.post("http://192.168.15.13/bdetec/userInsert",formData, axiosConfig);
       console.log("Cadastro bem-sucedido:", response.data);
-      navigation.navigate('Login')
+      
+      navigation.navigate('Login');
     } catch (error) {
       console.error("Ocorreu um erro ao cadastrar:", error);
     }
