@@ -28,6 +28,7 @@ export default function Cadastro() {
     try {
       const response = await axios.post("http://localhost/bdetec/userInsert",formData, axiosConfig);
       console.log("Cadastro bem-sucedido:", response.data);
+      navigation.navigate('Login')
     } catch (error) {
       console.error("Ocorreu um erro ao cadastrar:", error);
     }

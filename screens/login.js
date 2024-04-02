@@ -26,7 +26,7 @@ export default function Login() {
         try {
             const response = await axios.post("http://localhost/bdetec/userCheckCredentials", formData, axiosConfig); // Altere o endpoint e o método de envio conforme necessário
             console.log("Login bem-sucedido:", response.data);
-            navigation.navigate('Home')
+            navigation.navigate('Home');
             } catch (error) {
             console.error("Ocorreu um erro ao fazer login:", error);
         }
