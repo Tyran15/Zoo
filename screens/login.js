@@ -10,6 +10,7 @@ export default function Login() {
 
     useEffect(() => {
         checkAsyncStorage();
+        
     }, []);
 
     const checkAsyncStorage = async () => {
@@ -60,6 +61,8 @@ export default function Login() {
             const response = await axios.post("http://localhost/bdetec/userCheckCredentials", formData, axiosConfig);
             const data = response.data;
             saveSessionInfo(data.id, data.nome, data.email, true);
+            handleChange('email', '');
+            handleChange('senha', '');
             navigation.navigate('Home');
         } catch (error) {
             console.error("Ocorreu um erro ao fazer login:", error);

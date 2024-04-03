@@ -36,4 +36,8 @@ export const styles = StyleSheet.create({
     borderRadius: 2,
     margin: 20,
   },
+  imageBackground: {
+    width: 400,
+    height: 900,
+  }
 })
