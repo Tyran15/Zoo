@@ -57,7 +57,7 @@ export default function Login() {
 
     const submitChange = async () => {
         try {
-            const response = await axios.post("http://192.168.15.13/bdetec/userCheckCredentials", formData, axiosConfig);
+            const response = await axios.post("http://localhost/bdetec/userCheckCredentials", formData, axiosConfig);
             const data = response.data;
             saveSessionInfo(data.id, data.nome, data.email, true);
             navigation.navigate('Home');

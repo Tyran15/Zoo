@@ -1,27 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { StatusBar, ImageBackground, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { StatusBar, ImageBackground, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
 import { styles } from '../src/stylehome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
 export default function Home() {
   const navigation = useNavigation();
-  const [userNome, setUserNome] = useState("");
-
-  useEffect(() => {
-    fetchUserNome();
-  }, []);
-
-  const fetchUserNome = async () => {
-    try {
-      const nome = await AsyncStorage.getItem('user_name');
-      if (nome !== null) {
-        setUserNome(nome);
-      }
-    } catch (error) {
-      console.error('Erro ao obter nome do usuário do AsyncStorage:', error);
-    }
-  };
+  const data = [
+    { id: '1', imageUrl: require('../assets/img/Africa.jpg'), title: 'Africa' },
+    { id: '2', imageUrl: require('../assets/img/America.jpg'), title: 'America' },
+    { id: '3', imageUrl: require('../assets/img/Artic.jpg'), title: 'Artico' },
+    { id: '4', imageUrl: require('../assets/img/Asia.jpg'), title: 'Asia' },
+    { id: '5', imageUrl: require('../assets/img/Jurassic.jpg'), title: 'Jurássico' },
+    { id: '6', imageUrl: require('../assets/img/Oceania.png'), title: 'Oceania' },
+    { id: '7', imageUrl: require('../assets/img/Oceano.jpg'), title: 'Oceano' },
+  ];
 
   const removeItemFromStorage = async () => {
     try {
@@ -35,23 +28,34 @@ export default function Home() {
     }
   };
 
-  const handleImagePress = () => {
-    // Ação a ser executada quando a imagem for clicada
-    console.log('Imagem clicada!');
+  const renderItem = ({ item }) => (
+    <View style={styles.textContainer}>
+      <TouchableOpacity onPress={() => handleItemPress(item)}>
+        <Image
+          source={item.imageUrl}
+          style={{ width: 325, height: 325 }}
+          resizeMode="contain"
+        />
+        <Text>{item.title}</Text>
+      </TouchableOpacity>
+    </View>
+  );
+
+  const handleItemPress = (item) => {
+    // Implemente a ação que deseja realizar quando um item for pressionado
+    console.log('Item pressionado:', item.title);
   };
 
   return (
     <ImageBackground source={require('../assets/splash.jpg')} blurRadius={8} style={styles.imageBackground}>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <TouchableOpacity onPress={removeItemFromStorage}>
-          <Image source={require('../assets/img/tittle.png')} resizeMode="contain" style={styles.titleImage} />
-        </TouchableOpacity>
-        <View style={styles.textContainer}>
-        <Text style={styles.text}>
-            Bem-vindos ao nosso zoológico, um lugar onde você pode embarcar em uma jornada emocionante através das regiões mais fascinantes do nosso planeta! Aqui, convidamos você a explorar e descobrir a diversidade incrível da vida selvagem, representando cada canto do mundo. Em nosso zoológico, cada área oferece uma visão única e emocionante da vida selvagem, destacando a importância da conservação e do respeito pela natureza em todas as partes do mundo. Prepare-se para uma jornada inesquecível enquanto mergulha na beleza e na diversidade do nosso planeta!
-          </Text>
-        </View>
-      </ScrollView>
+      <TouchableOpacity onPress={removeItemFromStorage}>
+        <Image source={require('../assets/img/tittle.png')} resizeMode="contain" style={styles.titleImage} />
+      </TouchableOpacity>
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      />
       <StatusBar style="auto" />
     </ImageBackground>
   );
