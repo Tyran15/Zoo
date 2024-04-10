@@ -27,7 +27,7 @@ export default function Cadastro() {
 
   const submitChange = async () => {
     try {
-      const response = await axios.post("http://localhost/bdetec/userInsert",formData, axiosConfig);
+      const response = await axios.post("http://192.168.15.10/bdetec/userInsert",formData, axiosConfig);
       console.log("Cadastro bem-sucedido:", response.data);
       
       navigation.navigate('Login');
