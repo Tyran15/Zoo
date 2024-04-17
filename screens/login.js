@@ -58,11 +58,9 @@ export default function Login() {
 
     const submitChange = async () => {
         try {
-            const response = await axios.post("http://192.168.15.10/bdetec/userCheckCredentials", formData, axiosConfig);
+            const response = await axios.post("http://localhost/bdetec/userCheckCredentials", formData, axiosConfig);
             const data = response.data;
             saveSessionInfo(data.id, data.nome, data.email, true);
-            handleChange('email', '');
-            handleChange('senha', '');
             navigation.navigate('Home');
         } catch (error) {
             console.error("Ocorreu um erro ao fazer login:", error);

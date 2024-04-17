@@ -28,7 +28,8 @@ export const styles = StyleSheet.create({
   },
   ImageBackground: {
     flex: 1,
-    height: 100,
+    height: 'auto',
+    width: 'auto'
   },
   textContainer: {
     padding: 20,
@@ -59,12 +60,59 @@ export const styles = StyleSheet.create({
   },
   bottomBar: {
     backgroundColor: '#63E1A4',
-    width: 'auto',
-    height: 74,
-    justifyContent: 'flex-end'
+    width: '100%',
+    height: 30,
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    flex: 1,
+    flexDirection: 'row',
   },
   logo: {
     width: 200,
-    marginTop: 30,
   },
+  perfil: {
+    width: 150,
+    height: 100,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    height: 500,
+    width: 300,
+    borderWidth: 1
+  },
+  openButton: {
+    backgroundColor: "blue",
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    marginBottom: 5,
+    width: 125
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
 })
